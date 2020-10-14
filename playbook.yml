@@ -62,16 +62,16 @@
     - name: cargo install
       shell:
         cmd: cargo install alacritty bootimage cargo-bootimage cargo-add cargo-rm cargo-upgrade cargo-license cargo-outdated cargo-install-update cargo-install-update-config diesel hexyl rg silicon
-    - name: mkdir ~/minicamp-tools/vscode
+    - name: mkdir ~/tools/vscode
       file:
-        path: ~/minicamp-tools/vscode
+        path: ~/tools/vscode
         state: directory
         mode: '0755'
     - name: VSCode download
       shell:
-        cmd: curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o ~/minicamp-tools/vscode/vscode.deb
-        creates: ~/minicamp-tools/vscode/vscode.deb
+        cmd: curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o ~/tools/vscode/vscode.deb
+        creates: ~/tools/vscode/vscode.deb
     - name: VSCode install
       apt:
-        deb: "/home/{{ main_user }}/minicamp-tools/vscode/vscode.deb"
+        deb: "/home/{{ main_user }}/tools/vscode/vscode.deb"
       become: yes
