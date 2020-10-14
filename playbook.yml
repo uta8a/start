@@ -1,0 +1,77 @@
+- hosts: vm
+  vars:
+    main_user: "user"
+  tasks:
+    - name: update and upgrade
+      apt:
+        update_cache: yes
+        upgrade: 'yes'
+      become: yes
+    - name: install via apt
+      apt:
+        pkg:
+          - binutils
+          - build-essential
+          - cmake
+          - curl
+          - default-jdk
+          - docker-compose
+          - docker.io
+          - emacs
+          - fcitx-mozc
+          - ffmpeg
+          - file
+          - gcc
+          - gdb
+          - ghex
+          - git
+          - gnome-getting-started-docs-ja
+          - gnome-user-docs-ja
+          - htop
+          - inetutils-traceroute
+          - libpq-dev
+          - libssl-dev
+          - ltrace
+          - nasm
+          - netcat
+          - python-is-python3
+          - python3
+          - python3-dev
+          - python3-pip
+          - python3-venv
+          - qemu
+          - qemu-system-x86
+          - radare2
+          - ssh
+          - strace
+          - tmux
+          - tree
+          - ubuntu-restricted-extras
+          - ulauncher
+          - vim
+          - wget
+      become: yes
+    - name: checksec
+      include_tasks: tasks/checksec.yml
+    - name: rp++
+      include_tasks: tasks/rp.yml
+    - name: Rust
+      shell:
+        cmd: curl -sSf https://sh.rustup.rs | sh -s -- -y
+        creates: ~/.cargo
+    - name: cargo install
+      shell:
+        cmd: cargo install alacritty bootimage cargo-bootimage cargo-add cargo-rm cargo-upgrade cargo-license cargo-outdated cargo-install-update cargo-install-update-config diesel hexyl rg silicon
+    - name: mkdir ~/minicamp-tools/vscode
+      file:
+        path: ~/minicamp-tools/vscode
+        state: directory
+        mode: '0755'
+    - name: VSCode download
+      shell:
+        cmd: curl -L https://go.microsoft.com/fwlink/?LinkID=760868 -o ~/minicamp-tools/vscode/vscode.deb
+        creates: ~/minicamp-tools/vscode/vscode.deb
+    - name: VSCode install
+      apt:
+        deb: "/home/{{ main_user }}/minicamp-tools/vscode/vscode.deb"
+      become: yes
