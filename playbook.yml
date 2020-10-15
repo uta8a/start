@@ -1,6 +1,6 @@
-- hosts: vm
+- hosts: localhost
   vars:
-    main_user: "user"
+    main_user: "uta8a"
   tasks:
     - name: update and upgrade
       apt:
@@ -10,12 +10,18 @@
     - name: install via apt
       apt:
         pkg:
+          - cmake
+          - pkg-config
+          - libfreetype6-dev
+          - libfontconfig1-dev
+          - libxcb-xfixes0-dev
           - binutils
           - build-essential
           - cmake
           - curl
           - default-jdk
           - docker-compose
+          - containerd
           - docker.io
           - emacs
           - fcitx-mozc
@@ -47,7 +53,6 @@
           - tmux
           - tree
           - ubuntu-restricted-extras
-          - ulauncher
           - vim
           - wget
       become: yes
@@ -62,6 +67,7 @@
     - name: cargo install
       shell:
         cmd: cargo install alacritty bootimage cargo-bootimage cargo-add cargo-rm cargo-upgrade cargo-license cargo-outdated cargo-install-update cargo-install-update-config diesel hexyl rg silicon
+        # 
     - name: mkdir ~/tools/vscode
       file:
         path: ~/tools/vscode

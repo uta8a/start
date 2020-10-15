@@ -5,3 +5,5 @@
 ./install.sh # ansible install
 ansible-playbook --connection=local
 ```
+## +plus
+- ulauncher
