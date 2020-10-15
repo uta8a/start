@@ -64,10 +64,48 @@
       shell:
         cmd: curl -sSf https://sh.rustup.rs | sh -s -- -y
         creates: ~/.cargo
-    - name: cargo install
+    - name: aracritty
       shell:
-        cmd: cargo install alacritty bootimage cargo-bootimage cargo-add cargo-rm cargo-upgrade cargo-license cargo-outdated cargo-install-update cargo-install-update-config diesel hexyl rg silicon
-        # 
+        cmd: cargo install alacritty
+    - name: bootimage
+      shell:
+        cmd: cargo install bootimage
+    # - name: cargo-bootimage
+    #   shell:
+    #     cmd: cargo install cargo-bootimage
+    # - name: cargo-add
+    #   shell:
+    #     cmd: cargo install cargo-add
+    # - name: cargo-rm
+    #   shell:
+    #     cmd: cargo install cargo-rm
+    # - name: cargo-upgrade
+    #   shell:
+    #     cmd: cargo install cargo-upgrade
+    # - name: cargo-license
+    #   shell:
+    #     cmd: cargo install cargo-license
+    # - name: cargo-outdated
+    #   shell:
+    #     cmd: cargo install cargo-outdated
+    # - name: cargo-install-update
+    #   shell:
+    #     cmd: cargo install cargo-install-update
+    # - name: cargo-install-update-config
+    #   shell:
+    #     cmd: cargo install cargo-install-update-config
+    # - name: diesel
+    #   shell:
+    #     cmd: cargo install diesel
+    # - name: hexyl
+    #   shell:
+    #     cmd: cargo install hexyl
+    - name: ripgrep
+      shell:
+        cmd: cargo install ripgrep
+    - name: silicon
+      shell:
+        cmd: cargo install silicon 
     - name: mkdir ~/tools/vscode
       file:
         path: ~/tools/vscode
